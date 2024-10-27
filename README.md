@@ -60,28 +60,22 @@ Cấu hình database tại file
    - Câu lệnh cron: `*/5 * * * *`  
    - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_5_second.php`
 
-3. **auto_run_1_hour.php**  
-   - Mô tả: Xử lý các tác vụ theo giờ.
-   - Tần suất: Mỗi giờ.  
-   - Câu lệnh cron: `0 * * * *`  
-   - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_1_hour.php`
+3. **auto_run_morning.php**  
+   - Mô tả: Chạy vào buổi sáng.
+   - Tần suất: Hằng ngày vào 00:00.  
+   - Câu lệnh cron: `0 0 * * *`  
+   - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_morning.php`
 
 4. **auto_run_firth_day_month.php**  
    - Mô tả: Chạy vào ngày đầu tháng.
    - Tần suất: Ngày đầu tháng.  
-   - Câu lệnh cron: `0 1 1 * *`  
+   - Câu lệnh cron: `0 0 1 * *`  
    - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_firth_day_month.php`
 
 5. **auto_run_firth_day_month_5_second.php**  
    - Mô tả: Xử lý tác vụ đặc biệt đầu tháng.
    - Tần suất: 5 phút sau đầu tháng.  
-   - Câu lệnh cron: `5 1 1 * *`  
+   - Câu lệnh cron: `5 0 1 * *`  
    - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_firth_day_month_5_second.php`
-
-6. **auto_run_morning.php**  
-   - Mô tả: Chạy vào buổi sáng.
-   - Tần suất: Hằng ngày vào 00:00.  
-   - Câu lệnh cron: `0 0 * * *`  
-   - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_morning.php`
 
 > **Lưu ý**: Thay `username` và đường dẫn theo cấu trúc hosting của bạn.
