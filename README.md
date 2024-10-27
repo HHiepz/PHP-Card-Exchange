@@ -8,7 +8,7 @@
 
 - [@HHiepz](https://www.github.com/hhiepz)
 
-## 🛠 Skills
+## 🛠 Kỹ năng
 Dự án này được xây dựng bằng các công nghệ sau:
 
 * **PHP** - Xử lý logic backend và các yêu cầu của người dùng.
