@@ -21,7 +21,7 @@ Dự án này được xây dựng bằng các công nghệ sau:
 
 - PHP phiên bản thấp nhất: **8.2**
 - Database server: **Khuyến nghị MySQL**
-- Để tối ưu toàn bộ quá trình, vui lòng tham khảo hướng dẫn [Cài đặt CronJobs](https://github.com/HHiepz/cv_doi-the-cao?tab=readme-ov-file#%EF%B8%8F-t%E1%BB%B1-%C4%91%E1%BB%99ng-h%C3%B3a-quy-tr%C3%ACnh).
+- Để tối ưu toàn bộ quá trình, vui lòng tham khảo hướng dẫn [Cài đặt CronJobs](?tab=readme-ov-file#%EF%B8%8F-t%E1%BB%B1-%C4%91%E1%BB%99ng-h%C3%B3a-quy-tr%C3%ACnh).
 
 ## Chạy cục bộ
 
