@@ -21,7 +21,7 @@ Dự án này được xây dựng bằng các công nghệ sau:
 
 - PHP phiên bản thấp nhất: **8.2**
 - Database server: **Khuyến nghị MySQL**
-- Để tối ưu toàn bộ quá trình, vui lòng tham khảo hướng dẫn [Cài đặt CronJobs](./CRONJOB.MD).
+- Để tối ưu toàn bộ quá trình, vui lòng tham khảo hướng dẫn [Cài đặt CronJobs](./CRONJOB.md).
 
 ## Chạy cục bộ
 
