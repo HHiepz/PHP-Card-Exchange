@@ -5,13 +5,13 @@
 ### Cấu hình các Cron Jobs
 
 1. **auto_run_1_second.php**  
-   - Mô tả: Xử lý các tác vụ cần chạy liên tục.
+   - Mô tả: Xử lý các tác vụ chạy liên tục.
    - Tần suất: Mỗi phút.  
    - Câu lệnh cron: `* * * * *`  
    - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_1_second.php`
 
 2. **auto_run_5_second.php**  
-   - Mô tả: Xử lý tác vụ cần mỗi 5 giây.
+   - Mô tả: Xử lý tác vụ mỗi 5 giây.
    - Tần suất: Mỗi 5 phút.  
    - Câu lệnh cron: `*/5 * * * *`  
    - Lệnh: `/usr/bin/php -q /home/username/public_html/cron/auto_run_5_second.php`
