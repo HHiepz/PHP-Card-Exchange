@@ -5,9 +5,9 @@ class Database
     private static $instance = null;
     private $conn;
 
-    private $dbname   = "zoneshop_card2kv1"; // tên CSDL của bạn
-    private $username = 'zoneshop_card2kv1';     // tên đăng nhập CSDL của bạn
-    private $password = '%O0]JkX{A$t=';         // mật khẩu CSDL của bạn
+    private $dbname   = "doithecao"; // tên CSDL của bạn
+    private $username = 'root';      // tên đăng nhập CSDL của bạn
+    private $password = '';          // mật khẩu CSDL của bạn
 
     private function __construct()
     {
