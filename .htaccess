@@ -1,0 +1,133 @@
+# Chuyển hướng tất cả yêu cầu HTTP sang HTTPS
+RewriteEngine On
+RewriteCond %{SERVER_PORT} 80
+RewriteCond %{THE_REQUEST} !/chargingws/v2 [NC]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Options -Indexes
+
+# An toàn dữ liệu TECHNT.NET
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set Content-Security-Policy "upgrade-insecure-requests; block-all-mixed-content"
+Header always set X-Frame-Options "ALLOW-FROM https://card2k.com/"
+Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "same-origin"
+Header set Permissions-Policy "camera=self; microphone=self"
+
+# Chặn truy cập vào file .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Chặn
+RewriteRule ^server-status$ - [R=404,L]
+RewriteRule ^server-info$ - [R=404,L]
+RewriteRule ^robots.txt$ - [R=404,L]
+
+# Tài khoản
+RewriteRule ^account/login$ page/account/login.php [L]                                                       # Đăng nhập
+RewriteRule ^account/logout$ ajaxs/main/account/logout.php [L]                                               # Đăng xuất
+RewriteRule ^account/register$ page/account/register.php [L]                                                 # Đăng ký
+RewriteRule ^account/resetpass$ page/account/resetpass.php [L]                                               # Quên mật khẩu
+RewriteRule ^account/profile$ page/account/profile.php [L]                                                   # Thông tin cá nhân
+
+# Bảo mật cấp 2
+RewriteRule ^account/verify$ page/account/2FA.php [L]                                                        # Bảo mật cấp 2 - Trang đăng nhập
+RewriteRule ^account/verify/active2FA$ page/account/security/active2FA.php [L]                               # Bảo mật cấp 2 - Trang người dùng kích hoạt
+RewriteRule ^account/verify/remove2FA$ page/account/security/remove2FA.php [L]                               # Bảo mật cấp 2 - Trang người hủy kích hoạt
+RewriteRule ^account/verify/activeEmail$ page/account/security/activeEmail.php [L]                           # Bảo mật cấp 2 - Trang người dùng kích hoạt
+RewriteRule ^account/verify/removeEmail$ page/account/security/removeEmail.php [L]                           # Bảo mật cấp 2 - Trang người hủy kích hoạt
+
+# Lịch sử
+RewriteRule ^historyExCard$ page/client/history/historyExCard.php [L]                                                  # Lịch sử đổi thẻ 
+RewriteRule ^historyBuyCard$ page/client/history/historyBuyCard.php [L]                                                # Lịch sử mua thẻ
+RewriteRule ^historyMoney$ page/client/history/historyMoney.php [L]                                                    # Lịch sử dòng tiền
+RewriteRule ^historyOrderTopup$ page/client/history/historyOrderTopup.php [L]                                          # Lịch sử nạp thẻ
+
+# Chi tiết
+RewriteRule ^details/buyCard/([A-Za-z0-9-]+) page/client/details/buyCard.php?buyCard_code=$1 [L]                       # Chi tiết đơn hàng mua thẻ
+RewriteRule ^details/withdraw/([A-Za-z0-9-]+) page/client/details/withdraw.php?wd_code=$1 [L]                          # Chi tiết đơn hàng rút tiền
+RewriteRule ^details/transfer/([A-Za-z0-9-]+) page/client/details/transfer.php?transfer_id=$1 [L]                      # Chi tiết đơn hàng chuyển tiền
+RewriteRule ^details/transferUser/([A-Za-z0-9-@._]+) page/client/details/transferUser.php?transfer_user=$1 [L]         # Chi tiết đơn hàng chuyển tiền
+
+# Người dùng
+RewriteRule ^buyCard$ page/client/buyCard.php [L]                                                              # Mua thẻ cào
+RewriteRule ^withdraw$ page/client/withdraw.php [L]                                                            # Rút tiền
+RewriteRule ^transfer$ page/client/transfer.php [L]                                                            # Chuyển tiền nội bộ
+RewriteRule ^partner$ page/client/partner.php [L]                                                              # Đối tác
+RewriteRule ^top$ page/client/top.php [L]                                                                      # Top nạp thẻ
+RewriteRule ^chinhsachbaomat$ page/client/chinhsachbaomat.php [L]                                              # Chính sách bảo mật
+RewriteRule ^orderTopup$ page/client/orderTopup.php [L]                                                        # Đặt đơn nạp thẻ
+# Trò chơi
+RewriteRule ^game/christmas/random$ page/client/game/christmas/random.php [L]     # Trò chơi gián sinh
+
+# Quản trị viên
+RewriteRule ^admin$ page/admin/index.php [L]
+RewriteRule ^admin/list/member$ page/admin/list/member.php [L]
+RewriteRule ^admin/list/card$ page/admin/list/card.php [L]
+RewriteRule ^admin/list/memberDetail/([A-Za-z0-9._%-]+@gmail\.com) page/admin/list/memberDetail.php?user_email=$1 [L]
+RewriteRule ^admin/list/buyCard$ page/admin/list/buyCard.php [L]
+RewriteRule ^admin/list/buyCardDetail/([A-Za-z0-9-]+) page/admin/list/buyCardDetail.php?buy_card_order_code=$1 [L]
+RewriteRule ^admin/list/withdraw$ page/admin/list/withdraw.php [L]
+RewriteRule ^admin/list/transfer$ page/admin/list/transfer.php [L]
+RewriteRule ^admin/list/partner$ page/admin/list/partner.php [L]
+RewriteRule ^admin/list/money$ page/admin/list/money.php [L]
+RewriteRule ^admin/list/rank$ page/admin/list/rank.php [L]
+RewriteRule ^admin/list/orderTopup$ page/admin/list/orderTopup.php [L]
+# Setting
+RewriteRule ^admin/administrator/settingCard$ page/admin/administrator/settingCard.php [L]
+RewriteRule ^admin/administrator/settingMoney$ page/admin/administrator/settingMoney.php [L]
+RewriteRule ^admin/administrator/settingNotification$ page/admin/administrator/settingNotification.php [L]
+RewriteRule ^admin/administrator/settingMaintenance$ page/admin/administrator/settingMaintenance.php [L]
+RewriteRule ^admin/administrator/settingWebsite$ page/admin/administrator/settingWebsite.php [L]
+RewriteRule ^admin/administrator/settingWithdrawProfit$ page/admin/administrator/settingWithdrawProfit.php [L]
+
+
+# API Partner
+RewriteRule ^chargingws/v2$ api/chargingws/v2.php [L]                                         # API đổi thẻ cào v2 nhiều website sử dụng
+RewriteRule ^api/chargingws/v2$ api/chargingws/v1.php [L]                                     # API đổi thẻ cào cũ riêng của card2k
+RewriteRule ^api/getRate$ api/getRate.php [L]                                                 # API lấy phí đổi thẻ cào
+RewriteRule ^api/checkCard$ api/checkCard.php [L]                                             # API kiểm tra trạng thái thẻ
+
+# API Callback - Đổi thẻ cào
+RewriteRule ^callback/exchangeCard$ callback/exchangeCard.php [L]                               # API web mẹ callback đổi thẻ cào
+
+# CRON JOB
+RewriteRule ^cronJob/updateFeeExchangeCard$ cron/action/updateFeeExchangeCard.php [L]     # Cập nhật phí đổi thẻ cào
+RewriteRule ^cronJob/updateFeeBuyCard$ cron/action/updateFeeBuyCard.php [L]               # Cập nhật phí mua thẻ cào
+RewriteRule ^cronJob/checkDateRankuser$ cron/action/checkDateRankUser.php [L]             # Truy thu thời hạn rank thành viên
+RewriteRule ^cronJob/checkDateNotiTransfer cron/action/checkDateNotiTransfer.php [L]      # Truy thu thời hạn dịch vụ thông báo nhận tiền
+RewriteRule ^cronJob/deleteLog$ cron/action/deleteLog.php [L]                             # Xóa dữ liệu định kỳ (đang setting 2 tháng 1 lần)
+RewriteRule ^cronJob/deleteTopNapThe$ cron/action/deleteTopNapThe.php [L]                 # Xóa dữ liệu TOP NAP THẺ (mỗi tháng)
+RewriteRule ^cronJob/withdraw$ cron/action/withdraw.php [L]                               # Duyệt đơn rút tiền
+RewriteRule ^cronJob/tongKet$ cron/action/tongKet.php [L]                                 # Tổng kết doanh thu cuối ngày
+RewriteRule ^cronJob/discord/minTelcoRare cron/discord/minTelcoRare.php [L]               # Thông báo giá chiết khấu thấp nhất discord
+RewriteRule ^cronJob/checkCardPending cron/action/checkCardPending.php [L]                # Kiểm tra đơn duyệt thẻ chờ
+RewriteRule ^cronJob/sendMail cron/action/sendMail.php [L]                                # Gửi mail thông báo chờ
+RewriteRule ^cronJob/withdrawProfit cron/action/withdrawProfit.php [L]                    # Rút tiền lãi đầu tháng.
+RewriteRule ^cronJob/orderTopup cron/action/orderTopup.php [L]                            # Đơn nạp thẻ
+RewriteRule ^cronJob/updateFeeTopup cron/action/updateFeeTopup.php [L]                    # Cập nhật phí nạp thẻ
+# CRON JOB [AUTO RUN]
+RewriteRule ^cronJob/AutoRun1Second$ cron/auto_run_1_second.php [L]                              # AUTO RUN 1 phút
+RewriteRule ^cronJob/AutoRun5Second$ cron/auto_run_5_second.php [L]                              # AUTO RUN 5 phút
+RewriteRule ^cronJob/AutoRunMorning$ cron/auto_run_morning.php [L]                               # AUTO RUN đầu ngày
+RewriteRule ^cronJob/AutoRunMonday$ cron/auto_run_monday.php [L]                                 # AUTO RUN đầu tuần
+RewriteRule ^cronJob/AutoRunMonday5Second$ cron/auto_run_monday_5_second.php [L]                 # AUTO RUN đầu tuần 5 phút
+RewriteRule ^cronJob/AutoRunFirthDayMonth$ cron/auto_run_firth_day_month.php [L]                 # AUTO RUN đầu tháng
+RewriteRule ^cronJob/AutoRunFirthDayMonth5Second$ cron/auto_run_firth_day_month_5_second.php [L] # AUTO RUN đầu tháng 5 phút
+
+# KIỂM THỬ API 
+RewriteRule ^testAPI/hhiepz cron/testAPI/hhiepz.php [L]          # AUTO RUN đầu tháng
+
+# Chặn truy cập trực tiếp vào các file .php nếu yêu cầu không đến từ hệ thống của bạn
+RewriteCond %{THE_REQUEST} \.php [NC]                        # Nếu yêu cầu có chứa .php
+RewriteCond %{HTTP:X-Requested-With} !^XMLHttpRequest$ [NC]  # Nếu yêu cầu không phải từ XMLHttpRequest
+RewriteRule ^ - [R,L]                                        # Chặn truy cập
+ErrorDocument 404 /index.php
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

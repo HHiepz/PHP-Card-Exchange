@@ -1,0 +1,22 @@
+{
+    "require": {
+        "google/apiclient": "^2.12.1",
+        "guzzlehttp/guzzle": "^7.8",
+        "monolog/monolog": "^2.9",
+        "sonata-project/google-authenticator": "^2.3",
+        "phpmailer/phpmailer": "^6.9"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "composer dump-autoload --optimize"
+        ],
+        "post-update-cmd": [
+            "composer dump-autoload --optimize"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
